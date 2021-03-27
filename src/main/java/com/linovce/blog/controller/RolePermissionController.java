@@ -22,7 +22,7 @@ public class RolePermissionController {
     @Autowired
     RolePermissionMapper rolePermissionMapper;
 
-    @RequestMapping("/")
+    @RequestMapping("/tt")
     @ResponseBody
     public String updateCategory(RolePermission c) throws Exception {
         List<RolePermission> rolePermission = rolePermissionMapper.selectAll();
