@@ -1,5 +1,6 @@
 package com.linovce.blog.controller;
 
+import com.github.pagehelper.PageHelper;
 import com.linovce.blog.entity.Article;
 import com.linovce.blog.service.ArticleService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +22,7 @@ public class ArticleController {
     @Autowired
     ArticleService articleService;
 
-    @RequestMapping("/")
+    @RequestMapping("/insertArticle")
     @ResponseBody
     public String insertArticle() throws Exception {
         Article article = new Article();
@@ -37,10 +38,33 @@ public class ArticleController {
         return "success";
     }
 
-    @RequestMapping("/select")
+    @RequestMapping("/selectArticle")
     @ResponseBody
-    public String selectArticle() throws Exception {
-        String tt =  articleService.select(101).toString();
-        return tt;
+    public Article selectArticle() throws Exception {
+        int i = 1/0;
+        Article result =  articleService.select(1);
+        return result;
+    }
+
+    @RequestMapping("/deleteArticle")
+    @ResponseBody
+    public Article deleteArticle() throws Exception {
+        articleService.delete(101);
+        return null;
+    }
+
+    @RequestMapping("/updateArticle")
+    @ResponseBody
+    public Article updateArticle() throws Exception {
+        Article article = new Article();
+        articleService.update(article);
+        return null;
+    }
+
+    @RequestMapping("/listArticle")
+    @ResponseBody
+    public List<Article> listArticle() throws Exception {
+        List<Article> result =  articleService.selectAll(2,2);
+        return result;
     }
 }

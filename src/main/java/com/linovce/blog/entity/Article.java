@@ -115,24 +115,4 @@ public class Article{
 	public java.util.Date getDoneDate(){
 		return this.doneDate;
 	}
-
-	@Override
-	public String toString() {
-		return "Article{" +
-				"articleId=" + articleId +
-				", articleName='" + articleName + '\'' +
-				", content='" + content + '\'' +
-				", homePicture='" + homePicture + '\'' +
-				", labels='" + labels + '\'' +
-				", classifications='" + classifications + '\'' +
-				", appreciate=" + appreciate +
-				", views=" + views +
-				", original=" + original +
-				", isComments=" + isComments +
-				", isCopyright=" + isCopyright +
-				", isPublish=" + isPublish +
-				", createDate=" + createDate +
-				", doneDate=" + doneDate +
-				'}';
-	}
 }

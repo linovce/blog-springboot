@@ -19,9 +19,6 @@ public interface ArticleMapper {
     void delete(int id);
     void update(Article article);
     Article select(int id);
-
-
-
     List<Article> selectAll();
 //    int selectCount();
 }

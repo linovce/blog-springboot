@@ -1,22 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.linovce.blog.mapper.ArticleMapper">
-<!--    <resultMap type="com.linovce.blog.entity.Article" id="BaseResultMap">-->
-<!--        <id property="article_id" column="articleId"/>-->
-<!--        <result property="article_name" column="articleName"/>-->
-<!--        <result property="content" column="content"/>-->
-<!--        <result property="home_picture" column="homePicture"/>-->
-<!--        <result property="labels" column="labels"/>-->
-<!--        <result property="classifications" column="classifications"/>-->
-<!--        <result property="appreciate" column="appreciate"/>-->
-<!--        <result property="done_date" column="doneDate"/>-->
-<!--        <result property="views" column="views"/>-->
-<!--        <result property="original" column="original"/>-->
-<!--        <result property="create_date" column="createDate"/>-->
-<!--        <result property="is_comments" column="isComments"/>-->
-<!--        <result property="is_copyright" column="isCopyright"/>-->
-<!--        <result property="is_publish" column="isPublish"/>-->
-<!--    </resultMap>-->
 
     <select id="select" parameterType="int" resultType="Article">
         select * from article where article_id= #{articleId}
@@ -77,7 +61,7 @@
     </update>
 
     <delete id="delete" parameterType="int">
-        delete from article where articleId = #{articleId}
+        delete from article where article_id = #{articleId}
     </delete>
 
     <insert id="insert" parameterType="Article" keyProperty="articleId" useGeneratedKeys="true">

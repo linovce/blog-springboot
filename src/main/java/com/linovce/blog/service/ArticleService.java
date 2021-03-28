@@ -1,5 +1,6 @@
 package com.linovce.blog.service;
 
+import com.github.pagehelper.PageHelper;
 import com.linovce.blog.entity.Article;
 import com.linovce.blog.mapper.ArticleMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,19 +29,19 @@ public class ArticleService {
         articleMapper.insert(article);
     }
     public void delete(int id){
-
+        articleMapper.delete(id);
     }
     public void update(Article article){
-
+        articleMapper.update(article);
     }
     public Article select(int id){
         Article article = articleMapper.select(id);
         return article;
     }
 
-
-
-    public List<Article> selectAll(){
-        return null;
+    public List<Article> selectAll(int pageNum,int pageSize){
+        PageHelper.startPage(pageNum,pageNum);
+        List<Article> result =  articleMapper.selectAll();
+        return result;
     }
 }
