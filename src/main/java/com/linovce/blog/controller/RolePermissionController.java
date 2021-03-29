@@ -4,6 +4,7 @@ import com.linovce.blog.common.ResultEnum;
 import com.linovce.blog.entity.RolePermission;
 import com.linovce.blog.exception.ServiceException;
 import com.linovce.blog.mapper.RolePermissionMapper;
+import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
