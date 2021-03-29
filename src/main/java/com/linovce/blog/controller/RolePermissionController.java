@@ -1,6 +1,8 @@
 package com.linovce.blog.controller;
 
+import com.linovce.blog.common.ResultEnum;
 import com.linovce.blog.entity.RolePermission;
+import com.linovce.blog.exception.ServiceException;
 import com.linovce.blog.mapper.RolePermissionMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -25,6 +27,9 @@ public class RolePermissionController {
     @RequestMapping("/tt")
     @ResponseBody
     public String updateCategory(RolePermission c) throws Exception {
+        if(true){
+            throw new ServiceException("业务异常111");
+        }
         List<RolePermission> rolePermission = rolePermissionMapper.selectAll();
         String r = rolePermission.toString();
         return r;
