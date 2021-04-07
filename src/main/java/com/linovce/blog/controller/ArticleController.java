@@ -8,6 +8,7 @@ import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -47,6 +48,7 @@ public class ArticleController {
     @ApiOperation(value = "查询文章", notes="通过文章编号查询文章")
     @RequestMapping(value ="/selectArticle",method = RequestMethod.GET)
     @ResponseBody
+    @CrossOrigin
     public Article selectArticle() throws Exception {
         Article result =  articleService.select(1);
         return result;
@@ -70,6 +72,7 @@ public class ArticleController {
     @ApiOperation(value = "查询所有文章", notes="查询所有文章")
     @RequestMapping(value ="/listArticle",method = RequestMethod.GET)
     @ResponseBody
+    @CrossOrigin
     public List<Article> listArticle() throws Exception {
         List<Article> result =  articleService.selectAll(2,2);
         return result;
