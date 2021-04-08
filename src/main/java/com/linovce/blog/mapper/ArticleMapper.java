@@ -16,7 +16,7 @@ import java.util.List;
 public interface ArticleMapper {
 
     int insert(Article article);
-    void delete(int id);
+    int delete(int id);
     void update(Article article);
     Article select(int id);
     List<Article> selectAll();

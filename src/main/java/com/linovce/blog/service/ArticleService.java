@@ -56,8 +56,8 @@ public class ArticleService {
         return articleMapper.insert(article);
     }
 
-    public void delete(int id){
-        articleMapper.delete(id);
+    public int delete(int id){
+        return articleMapper.delete(id);
     }
     public void update(Article article){
         articleMapper.update(article);
@@ -68,7 +68,12 @@ public class ArticleService {
     }
 
     public List<Article> selectAll(int pageNum,int pageSize){
-        PageHelper.startPage(pageNum,pageNum);
+        PageHelper.startPage(pageNum,pageSize);
+        List<Article> result =  articleMapper.selectAll();
+        return result;
+    }
+
+    public List<Article> selectAll(){
         List<Article> result =  articleMapper.selectAll();
         return result;
     }

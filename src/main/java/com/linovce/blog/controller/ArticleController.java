@@ -1,7 +1,9 @@
 package com.linovce.blog.controller;
 
 import com.github.pagehelper.PageHelper;
+import com.linovce.blog.common.ResultEnum;
 import com.linovce.blog.entity.Article;
+import com.linovce.blog.exception.BusinessException;
 import com.linovce.blog.service.ArticleService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
@@ -19,6 +21,7 @@ import java.util.List;
  * @description: TODO
  * @date 2021/3/27 15:41
  */
+@CrossOrigin
 @Controller
 @Api(tags = "文章管理")
 public class ArticleController {
@@ -28,7 +31,6 @@ public class ArticleController {
     @ApiOperation(value = "插入文章", notes="插入文章")
     @RequestMapping(value = "/insertArticle",method = RequestMethod.POST)
     @ResponseBody
-    @CrossOrigin
     public int insertArticle(@RequestBody Article article) throws Exception {
         articleService.insert(article);
         return article.getArticleId();
@@ -37,33 +39,42 @@ public class ArticleController {
     @ApiOperation(value = "查询文章", notes="通过文章编号查询文章")
     @RequestMapping(value ="/selectArticle",method = RequestMethod.GET)
     @ResponseBody
-    @CrossOrigin
-    public Article selectArticle() throws Exception {
-        Article result =  articleService.select(1);
+    public Article selectArticle(@RequestBody int articleId) throws Exception {
+        Article result =  articleService.select(articleId);
         return result;
     }
 
+    @ApiOperation(value = "删除文章", notes="通过文章编号物理删除文章")
     @RequestMapping(value ="/deleteArticle",method = RequestMethod.DELETE)
     @ResponseBody
-    public Article deleteArticle() throws Exception {
-        articleService.delete(101);
-        return null;
+    public int deleteArticle(@RequestBody int articleId) throws Exception {
+        return articleService.delete(articleId);
     }
 
+    @ApiOperation(value = "更新文章", notes="更新文章")
     @RequestMapping(value ="/updateArticle",method = RequestMethod.POST)
     @ResponseBody
-    public Article updateArticle() throws Exception {
-        Article article = new Article();
+    public int updateArticle(@RequestBody Article article) throws Exception {
         articleService.update(article);
-        return null;
+        return article.getArticleId();
     }
 
-    @ApiOperation(value = "查询所有文章", notes="查询所有文章")
+    @ApiOperation(value = "查询所有文章", notes="分页查询所有文章")
+    @RequestMapping(value ="/pagingArticle",method = RequestMethod.GET)
+    @ResponseBody
+    public List<Article> listArticle(@RequestParam int pageNum,@RequestParam int pageSize) throws Exception {
+        if(pageNum<0||pageSize<=0)
+            throw new BusinessException(ResultEnum.BusinessException);
+
+        List<Article> result =  articleService.selectAll(pageNum,pageSize);
+        return result;
+    }
+
+    @ApiOperation(value = "查询所有文章", notes="不分页查询所有文章")
     @RequestMapping(value ="/listArticle",method = RequestMethod.GET)
     @ResponseBody
-    @CrossOrigin
     public List<Article> listArticle() throws Exception {
-        List<Article> result =  articleService.selectAll(2,2);
+        List<Article> result =  articleService.selectAll();
         return result;
     }
 }
