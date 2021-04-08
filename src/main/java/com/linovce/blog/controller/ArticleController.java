@@ -8,10 +8,7 @@ import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -31,18 +28,10 @@ public class ArticleController {
     @ApiOperation(value = "插入文章", notes="插入文章")
     @RequestMapping(value = "/insertArticle",method = RequestMethod.POST)
     @ResponseBody
-    public String insertArticle() throws Exception {
-        Article article = new Article();
-        article.setArticleName("test1");
-        article.setContent("import com.linovce.blog.entity.Article;\n" +
-                "import com.linovce.blog.service.ArticleService;\n" +
-                "import org.springframework.beans.factory.annotation.Autowired;\n" +
-                "import org.springframework.stereotype.Controller;\n" +
-                "import org.springframework.web.bind.annotation.RequestMapping;\n" +
-                "import org.springframework.web.bind.annotation.ResponseBody;");
-
+    @CrossOrigin
+    public int insertArticle(@RequestBody Article article) throws Exception {
         articleService.insert(article);
-        return "success";
+        return article.getArticleId();
     }
 
     @ApiOperation(value = "查询文章", notes="通过文章编号查询文章")

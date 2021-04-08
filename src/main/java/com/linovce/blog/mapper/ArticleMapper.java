@@ -15,7 +15,7 @@ import java.util.List;
 @Repository
 public interface ArticleMapper {
 
-    void insert(Article article);
+    int insert(Article article);
     void delete(int id);
     void update(Article article);
     Article select(int id);

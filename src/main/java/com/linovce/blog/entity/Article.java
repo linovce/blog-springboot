@@ -5,6 +5,7 @@ public class Article{
 	private Integer articleId;
 	private String articleName;
 	private String content;
+	private String summary;
 	private String homePicture;
 	private String labels;
 	private String classifications;
@@ -114,5 +115,13 @@ public class Article{
 	
 	public java.util.Date getDoneDate(){
 		return this.doneDate;
+	}
+
+	public String getSummary() {
+		return summary;
+	}
+
+	public void setSummary(String summary) {
+		this.summary = summary;
 	}
 }
