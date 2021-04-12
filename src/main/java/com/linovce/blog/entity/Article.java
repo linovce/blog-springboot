@@ -1,5 +1,10 @@
 package com.linovce.blog.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import org.springframework.format.annotation.DateTimeFormat;
+
+import java.util.Date;
+
 public class Article{
 	
 	private Integer articleId;
@@ -11,110 +16,39 @@ public class Article{
 	private String classifications;
 	private Integer appreciate;
 	private Integer views;
-	private Integer original;
-	private Integer isComments;
-	private Integer isCopyright;
-	private Integer isPublish;
+	private boolean original;
+	private boolean isComments;
+	private boolean isCopyright;
+	private boolean isPublish;
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	@JsonFormat(pattern = "yyyy-MM-dd")
 	private java.util.Date createDate;
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	@JsonFormat(pattern = "yyyy-MM-dd")
 	private java.util.Date doneDate;
-	
-	public void setArticleId(Integer articleId){
+
+	public Integer getArticleId() {
+		return articleId;
+	}
+
+	public void setArticleId(Integer articleId) {
 		this.articleId = articleId;
 	}
-	
-	public Integer getArticleId(){
-		return this.articleId;
+
+	public String getArticleName() {
+		return articleName;
 	}
-	public void setArticleName(String articleName){
+
+	public void setArticleName(String articleName) {
 		this.articleName = articleName;
 	}
-	
-	public String getArticleName(){
-		return this.articleName;
+
+	public String getContent() {
+		return content;
 	}
-	public void setContent(String content){
+
+	public void setContent(String content) {
 		this.content = content;
-	}
-	
-	public String getContent(){
-		return this.content;
-	}
-	public void setHomePicture(String homePicture){
-		this.homePicture = homePicture;
-	}
-	
-	public String getHomePicture(){
-		return this.homePicture;
-	}
-	public void setLabels(String labels){
-		this.labels = labels;
-	}
-	
-	public String getLabels(){
-		return this.labels;
-	}
-	public void setClassifications(String classifications){
-		this.classifications = classifications;
-	}
-	
-	public String getClassifications(){
-		return this.classifications;
-	}
-	public void setAppreciate(Integer appreciate){
-		this.appreciate = appreciate;
-	}
-	
-	public Integer getAppreciate(){
-		return this.appreciate;
-	}
-	public void setViews(Integer views){
-		this.views = views;
-	}
-	
-	public Integer getViews(){
-		return this.views;
-	}
-	public void setOriginal(Integer original){
-		this.original = original;
-	}
-	
-	public Integer getOriginal(){
-		return this.original;
-	}
-	public void setIsComments(Integer isComments){
-		this.isComments = isComments;
-	}
-	
-	public Integer getIsComments(){
-		return this.isComments;
-	}
-	public void setIsCopyright(Integer isCopyright){
-		this.isCopyright = isCopyright;
-	}
-	
-	public Integer getIsCopyright(){
-		return this.isCopyright;
-	}
-	public void setIsPublish(Integer isPublish){
-		this.isPublish = isPublish;
-	}
-	
-	public Integer getIsPublish(){
-		return this.isPublish;
-	}
-	public void setCreateDate(java.util.Date createDate){
-		this.createDate = createDate;
-	}
-	
-	public java.util.Date getCreateDate(){
-		return this.createDate;
-	}
-	public void setDoneDate(java.util.Date doneDate){
-		this.doneDate = doneDate;
-	}
-	
-	public java.util.Date getDoneDate(){
-		return this.doneDate;
 	}
 
 	public String getSummary() {
@@ -123,5 +57,93 @@ public class Article{
 
 	public void setSummary(String summary) {
 		this.summary = summary;
+	}
+
+	public String getHomePicture() {
+		return homePicture;
+	}
+
+	public void setHomePicture(String homePicture) {
+		this.homePicture = homePicture;
+	}
+
+	public String getLabels() {
+		return labels;
+	}
+
+	public void setLabels(String labels) {
+		this.labels = labels;
+	}
+
+	public String getClassifications() {
+		return classifications;
+	}
+
+	public void setClassifications(String classifications) {
+		this.classifications = classifications;
+	}
+
+	public Integer getAppreciate() {
+		return appreciate;
+	}
+
+	public void setAppreciate(Integer appreciate) {
+		this.appreciate = appreciate;
+	}
+
+	public Integer getViews() {
+		return views;
+	}
+
+	public void setViews(Integer views) {
+		this.views = views;
+	}
+
+	public boolean isOriginal() {
+		return original;
+	}
+
+	public void setOriginal(boolean original) {
+		this.original = original;
+	}
+
+	public boolean isComments() {
+		return isComments;
+	}
+
+	public void setComments(boolean comments) {
+		isComments = comments;
+	}
+
+	public boolean isCopyright() {
+		return isCopyright;
+	}
+
+	public void setCopyright(boolean copyright) {
+		isCopyright = copyright;
+	}
+
+	public boolean isPublish() {
+		return isPublish;
+	}
+
+	public void setPublish(boolean publish) {
+		isPublish = publish;
+	}
+
+	public Date getCreateDate() {
+		return createDate;
+	}
+
+	public void setCreateDate(Date createDate) {
+		this.createDate = createDate;
+	}
+
+	public Date getDoneDate() {
+		return doneDate;
+	}
+
+	public void setDoneDate(Date doneDate) {
+		this.doneDate = doneDate;
 	}
 }

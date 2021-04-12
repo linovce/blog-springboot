@@ -40,14 +40,14 @@ public class ArticleService {
             article.setHomePicture("defaults");
         }
 
-        if(article.getOriginal()==null){
-            article.setOriginal(1);
+        if(article.isOriginal()){
+            article.setOriginal(true);
         }
         article.setAppreciate(0);
         article.setViews(0);
-        article.setIsComments(1);
-        article.setIsCopyright(1);
-        article.setIsPublish(1);
+        article.setPublish(true);
+        article.setCopyright(true);
+        article.setComments(true);
 
         Date date = new Date();
         article.setCreateDate(date);
