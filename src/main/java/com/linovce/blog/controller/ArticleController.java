@@ -1,6 +1,7 @@
 package com.linovce.blog.controller;
 
 import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.linovce.blog.common.ResultEnum;
 import com.linovce.blog.entity.Article;
 import com.linovce.blog.exception.BusinessException;
@@ -62,12 +63,14 @@ public class ArticleController {
     @ApiOperation(value = "查询所有文章", notes="分页查询所有文章")
     @RequestMapping(value ="/pagingArticle",method = RequestMethod.GET)
     @ResponseBody
-    public List<Article> listArticle(@RequestParam int pageNum,@RequestParam int pageSize) throws Exception {
+    public PageInfo<Article> listArticle(@RequestParam(name = "pageNum") Integer pageNum, @RequestParam(name = "pageSize") Integer pageSize) throws Exception {
         if(pageNum<0||pageSize<=0)
             throw new BusinessException(ResultEnum.BusinessException);
 
         List<Article> result =  articleService.selectAll(pageNum,pageSize);
-        return result;
+
+        PageInfo<Article> page = new PageInfo<>(result);
+        return page;
     }
 
     @ApiOperation(value = "查询所有文章", notes="不分页查询所有文章")
