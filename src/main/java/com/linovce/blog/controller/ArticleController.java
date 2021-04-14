@@ -1,14 +1,15 @@
 package com.linovce.blog.controller;
 
-import com.github.pagehelper.PageHelper;
+
 import com.github.pagehelper.PageInfo;
 import com.linovce.blog.common.ResultEnum;
 import com.linovce.blog.entity.Article;
 import com.linovce.blog.exception.BusinessException;
 import com.linovce.blog.service.ArticleService;
 import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -28,12 +29,16 @@ import java.util.List;
 public class ArticleController {
     @Autowired
     ArticleService articleService;
+    private final static Logger logger = LoggerFactory.getLogger(ArticleController.class);
+
 
     @ApiOperation(value = "插入文章", notes="插入文章")
     @RequestMapping(value = "/insertArticle",method = RequestMethod.POST)
     @ResponseBody
     public int insertArticle(@RequestBody Article article) throws Exception {
+        logger.info("开始插入文章,文章数据为：{}",article);
         articleService.insert(article);
+        logger.info("插入文章结束！");
         return article.getArticleId();
     }
 
@@ -41,6 +46,7 @@ public class ArticleController {
     @RequestMapping(value ="/selectArticle",method = RequestMethod.GET)
     @ResponseBody
     public Article selectArticle(@RequestBody int articleId) throws Exception {
+        logger.info("开始通过文章编号查询文章,文章编号为：{}",articleId);
         Article result =  articleService.select(articleId);
         return result;
     }
@@ -64,6 +70,8 @@ public class ArticleController {
     @RequestMapping(value ="/pagingArticle",method = RequestMethod.GET)
     @ResponseBody
     public PageInfo<Article> listArticle(@RequestParam(name = "pageNum") Integer pageNum, @RequestParam(name = "pageSize") Integer pageSize) throws Exception {
+        logger.info("开始分页查询所有文章,当前页面：{}，每页{}条数据",pageNum,pageSize);
+
         if(pageNum<0||pageSize<=0)
             throw new BusinessException(ResultEnum.BusinessException);
 
