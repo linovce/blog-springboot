@@ -1,5 +1,8 @@
 package com.linovce.blog.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import org.springframework.format.annotation.DateTimeFormat;
+
 public class Comment{
 	
 	private Integer commentId;
@@ -9,7 +12,11 @@ public class Comment{
 	private String commentDetail;
 	private String userName;
 	private String userEmail;
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	@JsonFormat(pattern = "yyyy-MM-dd")
 	private Integer appreciate;
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	@JsonFormat(pattern = "yyyy-MM-dd")
 	private java.util.Date createDate;
 	
 	public void setCommentId(Integer commentId){

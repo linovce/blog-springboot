@@ -3,13 +3,11 @@ package com.linovce.blog.entity;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import org.springframework.format.annotation.DateTimeFormat;
 
-public class User{
+public class UserRole{
 	
+	private Integer userRoleId;
 	private Integer userId;
-	private String userName;
-	private String password;
-	private String email;
-	private String type;
+	private Integer roleId;
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@JsonFormat(pattern = "yyyy-MM-dd")
 	private java.util.Date createDate;
@@ -17,6 +15,13 @@ public class User{
 	@JsonFormat(pattern = "yyyy-MM-dd")
 	private java.util.Date doneDate;
 	
+	public void setUserRoleId(Integer userRoleId){
+		this.userRoleId = userRoleId;
+	}
+	
+	public Integer getUserRoleId(){
+		return this.userRoleId;
+	}
 	public void setUserId(Integer userId){
 		this.userId = userId;
 	}
@@ -24,33 +29,12 @@ public class User{
 	public Integer getUserId(){
 		return this.userId;
 	}
-	public void setUserName(String userName){
-		this.userName = userName;
+	public void setRoleId(Integer roleId){
+		this.roleId = roleId;
 	}
 	
-	public String getUserName(){
-		return this.userName;
-	}
-	public void setPassword(String password){
-		this.password = password;
-	}
-	
-	public String getPassword(){
-		return this.password;
-	}
-	public void setEmail(String email){
-		this.email = email;
-	}
-	
-	public String getEmail(){
-		return this.email;
-	}
-	public void setType(String type){
-		this.type = type;
-	}
-	
-	public String getType(){
-		return this.type;
+	public Integer getRoleId(){
+		return this.roleId;
 	}
 	public void setCreateDate(java.util.Date createDate){
 		this.createDate = createDate;
